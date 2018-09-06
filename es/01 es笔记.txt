@@ -32,3 +32,8 @@
 		在elasticsearch.yml中配置bootstrap.system_call_filter为false，注意要在Memory下面:
 		bootstrap.memory_lock: false
 		bootstrap.system_call_filter: false
+安装插件
+https://www.cnblogs.com/aubin/p/8018081.html
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+npm config set strict-ssl false
