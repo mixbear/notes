@@ -1,0 +1,34 @@
+！记得关防火墙
+1、安装jdk
+	检索1.8的列表
+	yum list java-1.8*
+	java-1.8.0-openjdk-src.i686
+	yum install 	java-1.8.0-openjdk-src.i686
+2 启动报错
+	you can use the other X-Pack features (unsupported) by setting xpack.ml.enabled: false in elasticsearch.yml]
+	设置 xpack.ml.enabled: false
+	 
+	[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+		切换到root用户下面，
+		vim   /etc/security/limits.conf
+		在最后添加
+		* hard nofile 65536
+		* hard nofile 65536
+	[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+	
+	解决办法： 
+	1、切换到root用户修改配置sysctl.conf
+	vi /etc/sysctl.conf 
+	1
+	添加下面配置：
+	vm.max_map_count=655360
+	1
+	并执行命令：
+
+	sysctl -p
+	[3]: system call filters failed to install; check the logs and fix your configuration or disable system call filters at your own risk
+	
+	解决：
+		在elasticsearch.yml中配置bootstrap.system_call_filter为false，注意要在Memory下面:
+		bootstrap.memory_lock: false
+		bootstrap.system_call_filter: false
